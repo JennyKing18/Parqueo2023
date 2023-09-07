@@ -96,72 +96,73 @@ public class Parqueo {
     //     }
     //     return res;
     // }
+    public int calcularDescuento(int descuento, int montoOriginal)
+    { //calcula el descuento
+        int montoDescontado=(descuento/100)*montoOriginal;
+        //int montoActualizado=montoOriginal-montoDescontado; //precio actualizado
+        return montoDescontado;
+    }
+
+    public int obtenerMontoOriginal(String tipo){
+        int monto=0;
+        
+        if (tipo.equalsIgnoreCase("Camion"))
+        {
+            monto =MONTO_CAMION;
+        }
+        else if (tipo.equalsIgnoreCase("Moto"))
+        {
+            monto =MONTO_MOTO;
+        }
+        else if (tipo.equalsIgnoreCase("Bici"))
+        {
+            monto =MONTO_BICI;
+        }
+        else if (tipo.equalsIgnoreCase("Otros"))
+        {
+            monto =MONTO_OTROS;
+        }
+        else
+        {
+            monto =MONTO_CARRO;
+        }
+        return monto;
+
+    }
+
 
     public void actualizarDescuento(String tipo, int descuento){
+        int montoOG = obtenerMontoOriginal(tipo);//monto original
         for (int i = 0; i < parqueo.size(); i++) {
             if (parqueo.get(i).getTipo().equalsIgnoreCase(tipo)) {
-                parqueo.get(i).setDescuento(descuento);
+                parqueo.get(i).setDescuento(calcularDescuento(descuento, montoOG));
                 parqueo.get(i).setTieneDescuento(true);
             }
         }
     }
 
-    public void getMensajeSalida() {
-        for (int i = 0; i < parqueo.size(); i++) {
-            if (parqueo.get(i).getTieneDescuento()) {
-                int randomDescuento = new Random().nextInt(101);
-                if (parqueo.get(i).getTipo().equalsIgnoreCase("carro")) {
-                    parqueo.actualizarDescuento("carro", randomDescuento);
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() + 
-                    " horas a " + MONTO_CARRO + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_CARRO + 
-                    " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CARRO) +
-                    " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_CARRO - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CARRO)));
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("moto")) {
-                    parqueo.actualizarDescuento("moto", randomDescuento);
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
-                    " horas a " + MONTO_MOTO + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_MOTO +
-                    " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_MOTO) +
-                    " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_MOTO - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_MOTO)));
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("camion")) {
-                    parqueo.actualizarDescuento("camion", randomDescuento);
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
-                    " horas a " + MONTO_CAMION + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_CAMION +
-                    " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CAMION) +
-                    " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_CAMION - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CAMION)));
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("bici")) {
-                    parqueo.actualizarDescuento("bici", randomDescuento);
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
-                    " horas a " + MONTO_BICI + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_BICI +
-                    " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_BICI) +
-                    " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_BICI - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_BICI)));
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("otros")) {
-                    parqueo.actualizarDescuento("otros", randomDescuento);
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
-                    " horas a " + MONTO_OTROS + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_OTROS +
-                    " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_OTROS) +
-                    " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_OTROS - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_OTROS)));
-                }
+    public void getMensajeSalida() 
+    {
+        for (int i = 0; i < parqueo.size(); i++) 
+        {
+            String tipo=parqueo.get(i).getTipo();
+            String placa=parqueo.get(i).getPlaca();
+            double horas=parqueo.get(i).getHoras();
+            int montoBase=obtenerMontoOriginal(tipo);///montoBase i think
+            int montoTotal= parqueo.get(i).getHoras()* montoBase;//monto total horas x monto base
+            int descuento= parqueo.get(i).getDescuento();
+            int montoFinal= montoBase-descuento;
+
+
+            if (parqueo.get(i).getTieneDescuento())
+            {
+                System.out.println("");
             }
-            else {
-                if (parqueo.get(i).getTipo().equalsIgnoreCase("carro")) {
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() + " horas a " +
-                    MONTO_CARRO + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_CARRO);
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("moto")) {
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() + " horas a " +
-                    MONTO_MOTO + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_MOTO);
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("camion")) {
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() + " horas a " +
-                    MONTO_CAMION + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_CAMION);
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("bici")) {
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() + " horas a " +
-                    MONTO_BICI + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_BICI);
-                } else if (parqueo.get(i).getTipo().equalsIgnoreCase("otros")) {
-                    System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() + " horas a " +
-                    MONTO_OTROS + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_OTROS);
-                }
+            else
+            {
+                System.out.println();
             }
         }
-
     }
     
     public void montoTotal(){
