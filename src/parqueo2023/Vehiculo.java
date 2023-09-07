@@ -10,10 +10,11 @@ public class Vehiculo {
     private int descuento;
     private boolean tieneDescuento;
 
-    public Vehiculo(String placa, String tipo, int espacios) {
+    public Vehiculo(String placa, String tipo, int espacios, int descuento, boolean tieneDescuento) {
         this.placa = placa;
         this.tipo = tipo;
         this.espacios = espacios;
+        this.descuento=descuento;
         this.tieneDescuento = false;
     }
     

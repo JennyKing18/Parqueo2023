@@ -1,5 +1,6 @@
 package parqueo2023;
 import java.util.ArrayList;
+import java.util.Random;
 /**
  * @author diemo
  */
@@ -104,30 +105,37 @@ public class Parqueo {
             }
         }
     }
+
     public void getMensajeSalida() {
         for (int i = 0; i < parqueo.size(); i++) {
             if (parqueo.get(i).getTieneDescuento()) {
+                int randomDescuento = new Random().nextInt(101);
                 if (parqueo.get(i).getTipo().equalsIgnoreCase("carro")) {
+                    parqueo.actualizarDescuento("carro", randomDescuento);
                     System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() + 
                     " horas a " + MONTO_CARRO + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_CARRO + 
                     " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CARRO) +
                     " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_CARRO - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CARRO)));
                 } else if (parqueo.get(i).getTipo().equalsIgnoreCase("moto")) {
+                    parqueo.actualizarDescuento("moto", randomDescuento);
                     System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
                     " horas a " + MONTO_MOTO + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_MOTO +
                     " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_MOTO) +
                     " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_MOTO - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_MOTO)));
                 } else if (parqueo.get(i).getTipo().equalsIgnoreCase("camion")) {
+                    parqueo.actualizarDescuento("camion", randomDescuento);
                     System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
                     " horas a " + MONTO_CAMION + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_CAMION +
                     " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CAMION) +
                     " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_CAMION - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_CAMION)));
                 } else if (parqueo.get(i).getTipo().equalsIgnoreCase("bici")) {
+                    parqueo.actualizarDescuento("bici", randomDescuento);
                     System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
                     " horas a " + MONTO_BICI + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_BICI +
                     " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_BICI) +
                     " por lo que paga " + (parqueo.get(i).getHoras()*MONTO_BICI - (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_BICI)));
                 } else if (parqueo.get(i).getTipo().equalsIgnoreCase("otros")) {
+                    parqueo.actualizarDescuento("otros", randomDescuento);
                     System.out.println("Vehiculo placa " + parqueo.get(i).getPlaca() + " sale con " + parqueo.get(i).getHoras() +
                     " horas a " + MONTO_OTROS + " colones por un monto de " + parqueo.get(i).getHoras() * MONTO_OTROS +
                     " colones con un descuento de " + (parqueo.get(i).getDescuento()/100 * parqueo.get(i).getHoras()*MONTO_OTROS) +

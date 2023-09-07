@@ -49,10 +49,10 @@ public class Parqueo2023 {
             else{
                 tipo="Otros";
             }
-            p.addVehiculo(new Vehiculo(strP, tipo, i+1));
+            p.addVehiculo(new Vehiculo(strP, tipo, i+1,0,false));
            
         }
-        p.addVehiculo(new Vehiculo("514513", "Carro", 1));
+        p.addVehiculo(new Vehiculo("514513", "Carro", 1,0,false));
         
         System.out.println("Generados: "+ "\n_______________________________________________________\n"+ p.toString());
         System.out.println("_______________________________________________________\n");
