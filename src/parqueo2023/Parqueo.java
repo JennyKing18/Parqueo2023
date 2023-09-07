@@ -14,21 +14,21 @@ public class Parqueo {
     private final int MONTO_OTROS=2000;
 
     private ArrayList<Vehiculo> parqueo;
-    private int espacios;
+    //private int espacios;
 
     public Parqueo() {
        parqueo = new ArrayList<Vehiculo>();
     }
-    @Override
-    public String toString() {
-        int acum = 0;
-        String str = "";
-        for (int i = 0; i < parqueo.size(); i++) {
-            acum += parqueo.get(i).getEspacios();
-            str += parqueo.get(i) + "\t" + acum +"\n"; 
-        }
-        return str;
-    }
+    // @Override
+    // public String toString() {
+    //     int acum = 0;
+    //     String str = "";
+    //     for (int i = 0; i < parqueo.size(); i++) {
+    //         acum += parqueo.get(i).getEspacios();
+    //         str += parqueo.get(i) + "\t" + acum +"\n"; 
+    //     }
+    //     return str;
+    // }
 
     public int addVehiculo(Vehiculo vehiculo){
         parqueo.add(vehiculo);
@@ -48,7 +48,6 @@ public class Parqueo {
         Vehiculo buscado = buscarPorPlaca(placa);
         if(buscado != null){
             parqueo.remove(buscado);
-            this.espacios -= buscado.getEspacios();
             return buscado;
         }
         return null;
@@ -76,13 +75,13 @@ public class Parqueo {
     //    System.out.println(espacios * MONTO_HORA);
     //}
     
-    private int getEspacios(){
-        int res = 0;
-        for (int i = 0; i < parqueo.size(); i++) {
-            res += parqueo.get(i).getEspacios();
-        }
-        return res;
-    }
+    // private int getEspacios(){
+    //     int res = 0;
+    //     for (int i = 0; i < parqueo.size(); i++) {
+    //         res += parqueo.get(i).getEspacios();
+    //     }
+    //     return res;
+    // }
     
     private double getHoras(){
         double res = 0;
@@ -90,13 +89,14 @@ public class Parqueo {
         return res;
     }
     
-    private double getEspaciosActivos(){
-        double res = 0;
-        for (int i = 0; i < parqueo.size(); i++) {
-            res += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
-        }
-        return res;
-    }
+    // private double getEspaciosActivos(){
+    //     double res = 0;
+    //     for (int i = 0; i < parqueo.size(); i++) {
+    //         res += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
+    //     }
+    //     return res;
+    // }
+
     public void actualizarDescuento(String tipo, int descuento){
         for (int i = 0; i < parqueo.size(); i++) {
             if (parqueo.get(i).getTipo().equalsIgnoreCase(tipo)) {
@@ -172,31 +172,31 @@ public class Parqueo {
         System.out.println("______________________________________________________________________________");
         for (int i = 0; i < parqueo.size(); i++) {
 
-            total += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
+            //total += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
 
             if (parqueo.get(i).getTipo().equals("Camion"))
             {
-                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_CAMION;
-                total=total* MONTO_CAMION;
+                individual =parqueo.get(i).getHoras() *MONTO_CAMION;
+                total+= MONTO_CAMION;
             }
             else if (parqueo.get(i).getTipo().equals("Moto"))
             {
-                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_MOTO;
-                total=total* MONTO_MOTO;
+                individual =parqueo.get(i).getHoras() * MONTO_MOTO;
+                total+= MONTO_MOTO;
             }
             else if (parqueo.get(i).getTipo().equals("Bici"))
             {
-                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_BICI;
-                total=total* MONTO_BICI;
+                individual =parqueo.get(i).getHoras() *MONTO_BICI;
+                total+= MONTO_BICI;
             }
             else if (parqueo.get(i).getTipo().equals("Otros"))
             {
-                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_OTROS;
-                total=total* MONTO_OTROS;
+                individual =parqueo.get(i).getHoras() *MONTO_OTROS;
+                total+= MONTO_OTROS;
             }
             else{
-                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_CARRO;
-                total=total* MONTO_OTROS;
+                individual =parqueo.get(i).getHoras() *MONTO_CARRO;
+                total+= MONTO_OTROS;
             }
             System.out.println(parqueo.get(i).toString()+ "\t" + "$"+individual);
         }
