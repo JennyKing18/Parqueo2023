@@ -133,7 +133,7 @@ public class Parqueo {
             System.out.println(parqueo.get(i).toString()+ "\t" + "$"+individual);
         }
         System.out.println("______________________________________________________________");
-        System.out.println("Total: "+ total);
+        System.out.println("Total: "+ total); 
         System.out.println("______________________________________________________________");
     }
     
