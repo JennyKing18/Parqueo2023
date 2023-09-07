@@ -78,7 +78,8 @@ public class Parqueo2023 {
         System.out.println("********** Agrega Horas ********************************************************************\n");
         System.out.println(p.toString());
         /*****************************************/
-       
+        p.actualizarDescuento("Moto",5);
+        p.getMensajeSalida();
         p.montoTotal();
     }
     

@@ -7,11 +7,14 @@ public class Vehiculo {
     private String tipo;
     private int espacios; // espacios que ocupa en el paruqeo
     private double horas;
+    private int descuento;
+    private boolean tieneDescuento;
 
     public Vehiculo(String placa, String tipo, int espacios) {
         this.placa = placa;
         this.tipo = tipo;
         this.espacios = espacios;
+        this.tieneDescuento = false;
     }
     
     @Override
@@ -51,5 +54,21 @@ public class Vehiculo {
 
     public void setHoras(double horas) {
         this.horas = horas;
+    }
+
+    public int getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+    }
+
+    public boolean getTieneDescuento() {
+        return tieneDescuento;
+    }
+
+    public void setTieneDescuento(boolean tieneDescuento) {
+        this.tieneDescuento = tieneDescuento;
     }
 }
