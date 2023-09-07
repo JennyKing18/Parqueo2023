@@ -19,7 +19,6 @@ public class Parqueo2023 {
     public static void main(String[] args) {
         
         Parqueo p = new Parqueo();
-        System.out.println("************************************");
         for (int i = 0; i < 10; i++) {
             //Generar una placa random
             int rangoP=999999-100000+1;
@@ -29,7 +28,6 @@ public class Parqueo2023 {
             //Generar un vehiculo random
             int rangoV=5-1+1;
             int randV= (int)(Math.random()*rangoV)+1;
-            System.out.println("este troste"+ randV);
             ////////////////////////////
             String tipo;
             if (randV==1)
@@ -55,20 +53,31 @@ public class Parqueo2023 {
            
         }
         p.addVehiculo(new Vehiculo("514513", "Carro", 1));
-        System.out.println("************************************\n");
         
         System.out.println("Generados: "+ "\n_______________________________________________________\n"+ p.toString());
         System.out.println("_______________________________________________________\n");
         
+        /******************BUSCAR***********************/
+        System.out.println("********** BUSCAR ********************************************************************\n");
         Vehiculo b =  p.buscarPorPlaca("514513");
         if (b!=null)
             System.out.println("ENCOTRADO: " + b.toString());
+        System.out.println("\n\n");
+        /**************************************** */
+
+        /******************ELIMINAR***********************/
         Vehiculo eliminado = p.removeVehiculo("514513");
+        System.out.println("********** ELIMINAR ********************************************************************\n");
         System.out.println("ELIMINADO el vehiculo:  "+ eliminado);
         System.out.println("\n\n");
+        /*****************************************/
+
+        /*******************Agregar horas random**********************/
         p.addHoras("514513", 5);
         p.addHorasRant(p);
+        System.out.println("********** Agrega Horas ********************************************************************\n");
         System.out.println(p.toString());
+        /*****************************************/
        
         p.montoTotal();
     }

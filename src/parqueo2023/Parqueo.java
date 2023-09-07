@@ -100,8 +100,9 @@ public class Parqueo {
     public void montoTotal(){
         double total = 0;
         double individual=0;
+        System.out.println("______________________________________________________________________________");
         System.out.println("********** MONTO A PAGAR DESGLOSE **********");
-        System.out.println("______________________________________________________________");
+        System.out.println("______________________________________________________________________________");
         for (int i = 0; i < parqueo.size(); i++) {
 
             total += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
@@ -132,9 +133,9 @@ public class Parqueo {
             }
             System.out.println(parqueo.get(i).toString()+ "\t" + "$"+individual);
         }
-        System.out.println("______________________________________________________________");
+        System.out.println("______________________________________________________________________________");
         System.out.println("Total: "+ total); 
-        System.out.println("______________________________________________________________");
+        System.out.println("______________________________________________________________________________");
     }
     
 }
