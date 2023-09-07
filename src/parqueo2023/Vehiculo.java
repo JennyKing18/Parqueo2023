@@ -17,7 +17,7 @@ public class Vehiculo {
     @Override
     //Carro 514513 [1, h:0.0]
     public String toString() {
-        return tipo + "\t " + placa + "\t\t"+espacios+"\t" + " Horas: "+ horas;
+        return tipo + "\t\t  " + placa + "\t\t"+espacios+"\t" + " Horas: "+ horas;
         //return tipo + ": " + placa + " [" + espacios +", h:"+ horas +']';
     }
 

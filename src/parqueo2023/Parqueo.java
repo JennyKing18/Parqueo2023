@@ -4,13 +4,19 @@ import java.util.ArrayList;
  * @author diemo
  */
 public class Parqueo {
-    private final int MAXIMO = 40;
-    private final int MONTO_HORA = 1200;
+    //private final int MAXIMO = 40;
+    //private final int MONTO_HORA = 1200;
+    private final int MONTO_CARRO=1500;
+    private final int MONTO_MOTO=800;
+    private final int MONTO_CAMIONES=2500;
+    private final int MONTO_BICI=500;
+    private final int MONTO_OTROS=2000;
+
     private ArrayList<Vehiculo> parqueo;
     private int espacios;
 
     public Parqueo() {
-       parqueo = new ArrayList<Vehiculo>(40);
+       parqueo = new ArrayList<Vehiculo>();
     }
     @Override
     public String toString() {
@@ -24,14 +30,9 @@ public class Parqueo {
     }
 
     public int addVehiculo(Vehiculo vehiculo){
-        if (getEspacios() + vehiculo.getEspacios()  <= MAXIMO){
-            parqueo.add(vehiculo);
-            this.espacios += vehiculo.getEspacios();
-           // System.out.println(parqueo.indexOf(vehiculo));
-            return parqueo.indexOf(vehiculo);
-        }
-        //System.out.println(-1);
-        return -1;
+        parqueo.add(vehiculo);
+        return parqueo.indexOf(vehiculo);
+       
     }
     
     public Vehiculo buscarPorPlaca(String placa){
@@ -42,14 +43,14 @@ public class Parqueo {
         return null;
     }
     
-    public boolean removeVehiculo(String placa){
+    public Vehiculo removeVehiculo(String placa){
         Vehiculo buscado = buscarPorPlaca(placa);
         if(buscado != null){
             parqueo.remove(buscado);
             this.espacios -= buscado.getEspacios();
-            return true;
+            return buscado;
         }
-        return false;
+        return null;
     }
     
     public double addHoras(String placa, double horas){
@@ -70,9 +71,9 @@ public class Parqueo {
         } 
     }
     
-    public void calcularMontoDiario(int espacios){
-        System.out.println(espacios * MONTO_HORA);
-    }
+    //public void calcularMontoDiario(int espacios){
+    //    System.out.println(espacios * MONTO_HORA);
+    //}
     
     private int getEspacios(){
         int res = 0;
@@ -102,12 +103,36 @@ public class Parqueo {
         System.out.println("********** MONTO A PAGAR DESGLOSE **********");
         System.out.println("______________________________________________________________");
         for (int i = 0; i < parqueo.size(); i++) {
+
             total += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
-            individual =parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
-            System.out.println(parqueo.get(i).toString()+ "\t" + "$"+individual* MONTO_HORA);
+
+            if (parqueo.get(i).getTipo().equals("Camion"))
+            {
+                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_CAMIONES;
+                total=total* MONTO_CAMIONES;
+            }
+            else if (parqueo.get(i).getTipo().equals("Moto"))
+            {
+                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_MOTO;
+                total=total* MONTO_MOTO;
+            }
+            else if (parqueo.get(i).getTipo().equals("Bici"))
+            {
+                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_BICI;
+                total=total* MONTO_BICI;
+            }
+            else if (parqueo.get(i).getTipo().equals("Otros"))
+            {
+                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_OTROS;
+                total=total* MONTO_OTROS;
+            }
+            else{
+                individual =(parqueo.get(i).getHoras() * parqueo.get(i).getEspacios())*MONTO_CARRO;
+                total=total* MONTO_OTROS;
+            }
+            System.out.println(parqueo.get(i).toString()+ "\t" + "$"+individual);
         }
         System.out.println("______________________________________________________________");
-        total=total* MONTO_HORA;
         System.out.println("Total: "+ total);
         System.out.println("______________________________________________________________");
     }
