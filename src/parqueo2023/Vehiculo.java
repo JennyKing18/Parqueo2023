@@ -7,7 +7,7 @@ public class Vehiculo {
     private String tipo;
     //private int espacios; // espacios que ocupa en el paruqeo
     private double horas;
-    private int descuento;
+    private double descuento;
     private boolean tieneDescuento;
 
     public Vehiculo(String placa, String tipo, int descuento, boolean tieneDescuento) {
@@ -49,11 +49,11 @@ public class Vehiculo {
         this.horas = horas;
     }
 
-    public int getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(int descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 

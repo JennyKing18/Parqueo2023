@@ -19,16 +19,14 @@ public class Parqueo {
     public Parqueo() {
        parqueo = new ArrayList<Vehiculo>();
     }
-    // @Override
-    // public String toString() {
-    //     int acum = 0;
-    //     String str = "";
-    //     for (int i = 0; i < parqueo.size(); i++) {
-    //         acum += parqueo.get(i).getEspacios();
-    //         str += parqueo.get(i) + "\t" + acum +"\n"; 
-    //     }
-    //     return str;
-    // }
+    @Override
+    public String toString() {
+        String str = "";
+        for (int i = 0; i < parqueo.size(); i++) {
+            str += parqueo.get(i) + "\n"; 
+        }
+        return str;
+    }
 
     public int addVehiculo(Vehiculo vehiculo){
         parqueo.add(vehiculo);
@@ -71,35 +69,10 @@ public class Parqueo {
         } 
     }
     
-    //public void calcularMontoDiario(int espacios){
-    //    System.out.println(espacios * MONTO_HORA);
-    //}
-    
-    // private int getEspacios(){
-    //     int res = 0;
-    //     for (int i = 0; i < parqueo.size(); i++) {
-    //         res += parqueo.get(i).getEspacios();
-    //     }
-    //     return res;
-    // }
-    
-    private double getHoras(){
-        double res = 0;
-        
-        return res;
-    }
-    
-    // private double getEspaciosActivos(){
-    //     double res = 0;
-    //     for (int i = 0; i < parqueo.size(); i++) {
-    //         res += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
-    //     }
-    //     return res;
-    // }
-    public int calcularDescuento(int descuento, int montoOriginal)
+    public double calcularDescuento(int descuento, double montoOriginal)
     { //calcula el descuento
-        int montoDescontado=(descuento/100)*montoOriginal;
-        //int montoActualizado=montoOriginal-montoDescontado; //precio actualizado
+        float montoDescontado=(float)descuento/100;
+        montoDescontado*=montoOriginal;
         return montoDescontado;
     }
 
@@ -132,7 +105,7 @@ public class Parqueo {
 
 
     public void actualizarDescuento(String tipo, int descuento){
-        int montoOG = obtenerMontoOriginal(tipo);//monto original
+        double montoOG = obtenerMontoOriginal(tipo);//monto original
         for (int i = 0; i < parqueo.size(); i++) {
             if (parqueo.get(i).getTipo().equalsIgnoreCase(tipo)) {
                 parqueo.get(i).setDescuento(calcularDescuento(descuento, montoOG));
@@ -149,61 +122,24 @@ public class Parqueo {
             String placa=parqueo.get(i).getPlaca();
             double horas=parqueo.get(i).getHoras();
             int montoBase=obtenerMontoOriginal(tipo);///montoBase i think
-            int montoTotal= parqueo.get(i).getHoras()* montoBase;//monto total horas x monto base
-            int descuento= parqueo.get(i).getDescuento();
-            int montoFinal= montoBase-descuento;
-
-
+            int montoTotal= (int)horas* montoBase;//monto total horas x monto base
+            double descuento= parqueo.get(i).getDescuento();
+            //System.out.println("este troste"+descuento);
+            double montoFinal= montoTotal-descuento;
             if (parqueo.get(i).getTieneDescuento())
             {
-                System.out.println("");
+                System.out.println(tipo+" placa "+ placa+" sale con "+horas+" horas a "+ 
+                                    montoBase+ " colones por un monto de "+ montoTotal+
+                                    ". Se aplica un descuento de "+ 
+                                    descuento + " por lo que paga "+montoFinal+"\n");
             }
             else
             {
-                System.out.println();
+                System.out.println(tipo+" placa "+ placa+" sale con "+horas+" horas a "+ 
+                                    montoBase+ " colones por un monto de "+ montoTotal+"\n");
             }
         }
     }
-    
-    public void montoTotal(){
-        double total = 0;
-        double individual=0;
-        System.out.println("______________________________________________________________________________");
-        System.out.println("********** MONTO A PAGAR DESGLOSE **********");
-        System.out.println("______________________________________________________________________________");
-        for (int i = 0; i < parqueo.size(); i++) {
-
-            //total += parqueo.get(i).getHoras() * parqueo.get(i).getEspacios();
-
-            if (parqueo.get(i).getTipo().equals("Camion"))
-            {
-                individual =parqueo.get(i).getHoras() *MONTO_CAMION;
-                total+= MONTO_CAMION;
-            }
-            else if (parqueo.get(i).getTipo().equals("Moto"))
-            {
-                individual =parqueo.get(i).getHoras() * MONTO_MOTO;
-                total+= MONTO_MOTO;
-            }
-            else if (parqueo.get(i).getTipo().equals("Bici"))
-            {
-                individual =parqueo.get(i).getHoras() *MONTO_BICI;
-                total+= MONTO_BICI;
-            }
-            else if (parqueo.get(i).getTipo().equals("Otros"))
-            {
-                individual =parqueo.get(i).getHoras() *MONTO_OTROS;
-                total+= MONTO_OTROS;
-            }
-            else{
-                individual =parqueo.get(i).getHoras() *MONTO_CARRO;
-                total+= MONTO_OTROS;
-            }
-            System.out.println(parqueo.get(i).toString()+ "\t" + "$"+individual);
-        }
-        System.out.println("______________________________________________________________________________");
-        System.out.println("Total: "+ total); 
-        System.out.println("______________________________________________________________________________");
-    }
-    
 }
+
+

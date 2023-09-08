@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package parqueo2023;
-
-
 /**
  *
  * @author diemo
  */
 import java.lang.Math;
 public class Parqueo2023 {
-
     /**
      * @param args the command line arguments
      */
@@ -52,7 +44,7 @@ public class Parqueo2023 {
             p.addVehiculo(new Vehiculo(strP, tipo,0,false));
            
         }
-        p.addVehiculo(new Vehiculo("514513", "Carro",0,false));
+        p.addVehiculo(new Vehiculo("514513", "Carro",5,true));
         
         System.out.println("Generados: "+ "\n_______________________________________________________\n"+ p.toString());
         System.out.println("_______________________________________________________\n");
@@ -65,22 +57,25 @@ public class Parqueo2023 {
         System.out.println("\n\n");
         /**************************************** */
 
-        /******************ELIMINAR***********************/
-        Vehiculo eliminado = p.removeVehiculo("514513");
-        System.out.println("********** ELIMINAR ********************************************************************\n");
-        System.out.println("ELIMINADO el vehiculo:  "+ eliminado);
-        System.out.println("\n\n");
-        /*****************************************/
-
-        /*******************Agregar horas random**********************/
+         /*******************Agregar horas random**********************/
         p.addHoras("514513", 5);
         p.addHorasRant(p);
         System.out.println("********** Agrega Horas ********************************************************************\n");
         System.out.println(p.toString());
         /*****************************************/
+
+        /******************ELIMINAR***********************/
+        Vehiculo eliminado = p.removeVehiculo("514513");
+        System.out.println("********** ELIMINAR ********************************************************************\n");
+        System.out.println("ELIMINADO el vehiculo:  "+ eliminado);
+        System.out.println("\n\n");
+        System.out.println("_______________________________________________________\n");
+        /*****************************************/
+
+        System.out.println("********** Reporte ********************************************************************\n");
         p.actualizarDescuento("Moto",5);
         p.getMensajeSalida();
-        p.montoTotal();
+       
     }
     
 }
