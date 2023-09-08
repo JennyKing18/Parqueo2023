@@ -2,7 +2,7 @@ package parqueo2023;
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * @author diemo
+ * @author Jenny King & Francisco Liu
  */
 public class Parqueo {
     //private final int MAXIMO = 40;

@@ -1,7 +1,7 @@
 package parqueo2023;
 /**
  *
- * @author diemo
+ * @author Jenny King & Francisco Liu
  */
 import java.lang.Math;
 public class Parqueo2023 {

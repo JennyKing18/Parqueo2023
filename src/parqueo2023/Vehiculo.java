@@ -1,6 +1,6 @@
 package parqueo2023;
 /**
- * @author diemo
+ * @author Jenny King & Francisco Liu
  */
 public class Vehiculo {
     private String placa;
